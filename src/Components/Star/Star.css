@@ -2,4 +2,29 @@
     background-color: white;
     border-radius: 100px;
     position: absolute;
+    box-shadow: 0px 0px 11px 1px #FFFFFF;
+
+    transition: background-color 0.7s ease-in-out;
+}
+
+.bg-star-shadow{
+    transition: box-shadow 0.7s ease-in-out;
+}
+
+.bg-star-invisible-parent {
+    opacity: 1;
+    border-radius: 100px;
+    position: absolute;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.fade-in-border{
+    box-shadow:0px 0px 70px 20px #2f1d69 ;  
+}
+
+.fade-in-body{
+    background-color: #5591f7;
 }

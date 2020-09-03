@@ -1,13 +1,13 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import Starmap from './Components/Starmap/Starmap'
 
-function App() {
-  return (
-    <div className="App">
+class App extends Component {
+  render() {
+    return <div className="App">
       <Starmap></Starmap>
     </div>
-  );
+  }
 }
 
 export default App;

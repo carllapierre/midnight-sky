@@ -4,49 +4,73 @@ import '../Starmap/Starmap.css';
 
 class starmap extends Component {
 
-    constructor() {
-        super();
-        let stars = this.populateStarMap();
-        this.state = { stars:[...stars] }; 
+    constructor(props) {
+        super(props);
+        this.state = { windowWidth: window.innerWidth-this.padding, 
+                       windowHeight: window.innerHeight-this.padding};
+      }
+
+    maxStarSize = 4;
+    minStarSize = 1;
+    hoverRadius = 100;
+    padding = (this.hoverRadius) +5;
+    grain = 0.0007;
+    
+    handleResize = (e) => {
+        this.setState({ windowWidth: window.innerWidth-this.padding, windowHeight: window.innerHeight-this.padding});
+    };
+
+    componentDidMount() {
+        window.addEventListener("resize", this.handleResize);
     }
 
-    maxStarSize = 7;
-    minStarSize = 2;
-    population = 100; 
-    fadespeed = 1;
-    width=  1500;
-    height= 1000;
+    componentWillUnmount() {
+        window.addEventListener("resize", this.handleResize);
+    } 
 
     getRandomInt(max, min) {
         return Math.floor(Math.random() * Math.floor(max)) + min;
     }
 
-    populateStarMap = () => {
-        let stars = [Array.from({ length: this.population }, (_, k) => {
-            let size = this.getRandomInt(this.maxStarSize, this.minStarSize);
-            let left = this.getRandomInt(this.width , 0);
-            let top  = this.getRandomInt(this.height, 0);
-            let opacity = (100 - ((top * 100) / this.height)) / 100;
+    getPopulation () {
+        return  Math.round(this.state.windowHeight * this.state.windowHeight * this.grain)
+    }
 
-            let style = {  
+    populateStarMap = () => {
+
+        let population = this.getPopulation();
+        let stars = [Array.from({ length: population}, (_, k) => {
+            let size = this.getRandomInt(this.maxStarSize, this.minStarSize);
+            let hoverSize = size + this.hoverRadius;
+            let left = this.getRandomInt(this.state.windowWidth,0 );
+            let top  = this.getRandomInt(this.state.windowHeight,0);
+            let opacity = (100 - ((top * 100) / this.state.windowHeight)) / 100;
+
+            let starStyle = {  
                 height: size + 'px',
                 width: size + 'px',
-                left: left + 'px',
-                top: top + 'px',
+                marginTop:  this.hoverRadius/2 + 'px',
+                marginLeft: this.hoverRadius/2 + 'px',
                 opacity: opacity
             }
-            console.log(style);
-            return (<Star key={k} styleProp={style}></Star>);
+            let parentStyle= {  
+                height: hoverSize + 'px',
+                width: hoverSize + 'px',
+                left: left + 'px',
+                top: top + 'px',
+            }
+            return (<Star key={k} starStyle={starStyle} parentStyle={parentStyle} ></Star>);
         })]
         return stars;
     }
 
     render() {
-        return <div className="star-map">
+        let stars = this.populateStarMap();
 
-        {this.state.stars.map((star) => {
-          return star
-        })}
+        return <div className="star-map">
+            {stars.map((star) => {
+                return star
+            })}
         </div>;
     }
 }

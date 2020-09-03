@@ -1,5 +1,6 @@
 .App {
   background-color: #282c34;
-  background: linear-gradient(351deg, rgba(20,44,82,1) 0%, rgba(20,22,23,1) 74%);
+  background-image: linear-gradient(to bottom, #000000, #100008, #160214, #18051e, #110b2a);
+  /* linear-gradient(351deg, rgba(20,44,82,1) 0%, rgba(20,22,23,1) 74%); */
   min-height: 100vh;
 }
