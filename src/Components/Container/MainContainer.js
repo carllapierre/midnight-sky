@@ -7,7 +7,7 @@ const MainContainer = (props) => {
 
         <div className="outer-container">
             <div className="main-container">
-                
+                {/* <div className="title-card">find a constellation</div> */}
             </div>
             <div className="copyright-notice">© Carl Lapierre {new Date().getFullYear()}</div>
         </div>
