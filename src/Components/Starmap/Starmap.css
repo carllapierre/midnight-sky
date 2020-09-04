@@ -1,6 +1,9 @@
-.star-map {
-    min-height: 100vh;
-    position: relative;
-    overflow: hidden;
-  }
+.star-map { 
+  min-width: 99vw;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+}
+  
   

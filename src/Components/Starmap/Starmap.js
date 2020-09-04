@@ -7,14 +7,17 @@ class starmap extends Component {
     constructor(props) {
         super(props);
         this.state = { windowWidth: window.innerWidth, 
-                       windowHeight: window.innerHeight,
-                       population: this.getPopulation(window.innerHeight, window.innerWidth)
+                       windowHeight: window.document.body.offsetHeight,
+                       population: this.getPopulation(window.document.body.offsetHeight, window.innerWidth)
                      };
+
+        console.log(window.document.body.offsetHeight);
       }
     
     handleResize = (e) => {
-        let h = window.innerHeight;
+        let h = window.document.body.offsetHeight;
         let w = window.innerWidth
+        console.log(h);
 
         let newPopulation = this.getPopulation(h,w);
         if(this.state.population > newPopulation)
@@ -25,11 +28,8 @@ class starmap extends Component {
 
     componentDidMount() {
         window.addEventListener("resize", this.handleResize);
+        this.handleResize();
     }
-
-    componentWillUnmount() {
-        window.addEventListener("resize", this.handleResize);
-    } 
 
     getPopulation (h,w) {
         let grain = 0.0004;
@@ -49,9 +49,11 @@ class starmap extends Component {
     }
 
     render() {
-
+        let style={
+            height: this.state.windowHeight
+        }
         let stars = this.populateStarMap();
-        return <div className="star-map">
+        return <div className="star-map" style={style}>
                     {stars.map((star) => {
                         return star
                     })}
