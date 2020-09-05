@@ -1,6 +1,6 @@
 .main-container{
     margin: auto;
-    width: 90%;
+    max-width: 1000px;
     height: 100vh;
     border: 5px solid #e3aef7;;
     z-index: 2;
@@ -13,11 +13,7 @@
 }
 
 .outer-container {
-    padding-left: 10%;
-    padding-right: 10%;
-    padding-top: 4%;
-    padding-bottom: 10%;
-
+    padding: 5%;
     color: #eab6fd;
     text-shadow: 1px 0px 20px #876ddc;
 }
@@ -27,29 +23,4 @@
     text-align: center;
     padding-top: 5px;
     font-size: 14px;
-}
-
-@media all and (max-width: 1330px) {
-    /* .main-container{
-        
-    }
-    .outer-container {
-        padding-left: 5%;
-        padding-right: 5%;
-    } */
-}
-
-@media all and (max-width: 700px) {
-    .outer-container{
-        padding: 7%;
-    }
-}
-
-@media all and (max-width: 500px) {
-    .outer-container{
-        padding: 3%;
-    }
-    .main-container{
-        min-width: 85%;
-    }
 }
